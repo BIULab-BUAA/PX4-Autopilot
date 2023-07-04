@@ -1,0 +1,35 @@
+###
+ # @Author: xindong324 xindong324@163.com
+ # @Date: 2023-07-04 21:03:06
+ # @LastEditors: xindong324 xindong324@163.com
+ # @LastEditTime: 2023-07-04 21:21:13
+ # @FilePath: /PX4-Autopilot-1.13/boards/hkust/nxt/init/rc.board_sensors
+ # @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+###
+#!/bin/sh
+#
+# PX4 FMUv6U specific board sensors init
+#------------------------------------------------------------------------------
+
+board_adc start
+
+#only v1.1.x version hardware has mpu6500 and icm20602
+# # # Internal SPI bus MPU6500
+# mpu6500 -R 0 -s start
+# # Internal SPI bus ICM-20602
+icm20689 -R 0 -s start
+
+# # Internal SPI bus ICM24688P
+icm42688p -R 0 -s start
+
+# # Internal SPI bus BMI088 accel/gyro
+bmi088 -A -R 0 -s start
+bmi088 -G -R 0 -s start
+
+
+# # internal compass
+bmm150 -I -R 12 start
+
+# internal baro
+bmp388 -I -a 0x76 start
+

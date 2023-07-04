@@ -1,3 +1,11 @@
+###
+ # @Author: xindong324 xindong324@163.com
+ # @Date: 2023-04-11 15:45:58
+ # @LastEditors: xindong324 xindong324@163.com
+ # @LastEditTime: 2023-07-04 14:23:28
+ # @FilePath: /PX4-Autopilot-1.13/boards/cuav/nora/init/rc.board_sensors
+ # @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+###
 #!/bin/sh
 #
 # board specific sensors init
@@ -11,8 +19,9 @@ icm20689 -s -b 1 -R 2 start
 rm3100 -s -b 2 start
 
 # SPI4
-bmi088 -s -b 4 -A -R 2 start
-if ! bmi088 -s -b 4 -G -R 2 start
+# bmi088 -s -b 4 -A -R 2 start
+bmi088 -s -b 4 -A start
+if ! bmi088 -s -b 4 -G  start
 then
 	icm42688p -R 2 -s start
 fi
